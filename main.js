@@ -19,9 +19,9 @@ function snakeHits() {
       return true;
   }
   if (
-    snakeArr[0].x <= 0 ||
+    snakeArr[0].x <= 1 ||
     snakeArr[0].x > 14 ||
-    snakeArr[0].y <= 0 ||
+    snakeArr[0].y <= 1 ||
     snakeArr[0].y > 14
   )
     return true;
