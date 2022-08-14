@@ -6,9 +6,9 @@ let ec = 0;
 let score = 0;
 const speed = 10;
 let lastLoadTime = 0;
-let startSound = new Audio("./music/music.mp3");
-let eatSound = new Audio("./music/food.mp3");
-let gameOverSound = new Audio("./music/gameover.mp3");
+let startSound = new Audio("/music/music.mp3");
+let eatSound = new Audio("/music/food.mp3");
+let gameOverSound = new Audio("/music/gameover.mp3");
 let highScore=0
 
 
