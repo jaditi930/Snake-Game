@@ -10,8 +10,7 @@ let startSound = new Audio("music/music.mp3");
 let eatSound = new Audio("music/food.mp3");
 let gameOverSound = new Audio("music/gameover.mp3");
 let highScore=0
-
-
+let prev=""
 
 function snakeHits() {
   for (let i = 1; i < snakeArr.length; i++) {
@@ -39,7 +38,9 @@ function startGame() {
     startSound.play();
     score = 0;
     document.getElementById("scoreValue").innerHTML=0;
+    prev=""
   }
+  handle_keypress(prev)
   if (snakeCollidesFood()) {
     startSound.pause();
     eatSound.play();
@@ -94,40 +95,45 @@ function snakeCollidesFood() {
 }
 function loadGame(ctime) {
   window.requestAnimationFrame(loadGame);
-  if ((ctime - lastLoadTime) / 1000 < 1 / speed) return;
+  if ((ctime - lastLoadTime) / 2000 < 1 / speed) return;
   else {
     lastLoadTime = ctime;
     startGame();
   }
 }
+function handle_keypress(e)
+  {
+    prev=e;
+    switch (e) {
+      case "ArrowUp":
+        snakePos.x = 0;
+        snakePos.y = -1;
+        eve++;
+        console.log(eve, ec);
+        break;
+      case "ArrowDown":
+        snakePos.x = 0;
+        snakePos.y = 1;
+        eve++;
+  
+        break;
+      case "ArrowLeft":
+        snakePos.x = -1;
+        snakePos.y = 0;
+        eve++;
+  
+        break;
+      case "ArrowRight":
+        snakePos.x = 1;
+        snakePos.y = 0;
+        eve++;
+        break;
+      default:
+        break;
+    }
+}
 window.requestAnimationFrame(loadGame);
 
-window.addEventListener("keydown", (e) => {
-  switch (e.key) {
-    case "ArrowUp":
-      snakePos.x = 0;
-      snakePos.y = -1;
-      eve++;
-      console.log(eve, ec);
-      break;
-    case "ArrowDown":
-      snakePos.x = 0;
-      snakePos.y = 1;
-      eve++;
-
-      break;
-    case "ArrowLeft":
-      snakePos.x = -1;
-      snakePos.y = 0;
-      eve++;
-
-      break;
-    case "ArrowRight":
-      snakePos.x = 1;
-      snakePos.y = 0;
-      eve++;
-      break;
-    default:
-      break;
-  }
-});
+window.addEventListener("keydown", (e) => 
+handle_keypress(e.key)
+);
